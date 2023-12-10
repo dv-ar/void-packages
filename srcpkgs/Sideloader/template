@@ -1,0 +1,28 @@
+# Template file for 'Sideloader'
+homepage="https://github.com/Dadoum/Sideloader"
+license="GPL-3.0-or-later"
+maintainer="dv-ar <dvar@tuta.io>"
+pkgname=Sideloader
+revision=1
+short_desc="The missing open-source iOS sideloader" 
+version=1.0
+#hostmakedepends=""
+#makedepends=""
+#depends=""
+distfiles="${homepage}/archive/refs/tags/${version}-pre1.tar.gz"
+checksum=
+#build_style=""
+archs="x86_64*"
+
+do_build(){
+	dub build -b release-debug --compiler=ldc2 -c linux-gtk-static
+}
+
+pre_install(){
+	eu-strip --strip-debug -f "bin/sideloader.dbg" "$bin/sideloader"
+}
+
+do_install(){
+	vbin bin/sideloader
+}
+
