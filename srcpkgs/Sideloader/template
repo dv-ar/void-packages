@@ -7,19 +7,15 @@ revision=1
 short_desc="The missing open-source iOS sideloader" 
 version=1.0
 hostmakedepends="dub ldc git"
-makedepends="libphobos"
-#depends=""
+makedepends="libphobos ldc-runtime"
+depends="libimobiledevice libplist"
 distfiles="${homepage}/archive/refs/tags/${version}-pre1.tar.gz"
 checksum=eb9ddcda8b87178f80f882cbf11194cf286f47772f6b8ce74812952303412f1b
 #build_style=""
 archs="x86_64*"
 
 do_build(){
-	dub build -b release-debug --compiler=ldc2 -c linux-gtk-static
-}
-
-pre_install(){
-	eu-strip --strip-debug -f "bin/sideloader.dbg" "$bin/sideloader"
+	dub build -b release-debug --compiler=ldc2 -c linux-gtk
 }
 
 do_install(){
