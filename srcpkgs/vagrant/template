@@ -1,6 +1,6 @@
 # Template file for 'vagrant'
 pkgname=vagrant
-version=2.3.2
+version=2.4.0
 revision=1
 archs="i686 x86_64*"
 build_style=gemspec
@@ -11,11 +11,11 @@ license="MIT"
 homepage="https://www.vagrantup.com/"
 changelog="https://raw.githubusercontent.com/hashicorp/vagrant/main/CHANGELOG.md"
 distfiles="https://github.com/hashicorp/vagrant/archive/v${version}.tar.gz"
-checksum=76d3737e273fa73501f7c12a4814f6a63851b8119118575cc77e9911ce3acb06
+checksum=b3b27cec956b864ad3ab333a819e3d5b5d769ecc159ea8af98c466aef2c069c5
 nocross=yes
 
 post_extract() {
-	vsed -i 's|, "< 3\.1"||g' vagrant.gemspec
+	vsed -e 's|, "< 3\.1"||g' -i vagrant.gemspec
 }
 
 do_install() {
@@ -54,4 +54,8 @@ do_install() {
 	find ${DESTDIR} -type d -name doc -print0|xargs -0 rm -rf --
 	find ${DESTDIR} -type d -name ports -print0|xargs -0 rm -rf --
 	rm -r ${DESTDIR}/usr/lib/vagrant/cache
+
+	# XXX: work around bad permissions
+	chmod 644 ${DESTDIR}/usr/lib/vagrant/gems/google-protobuf-*/lib/google/protobuf.rb \
+		${DESTDIR}/usr/lib/vagrant/gems/google-protobuf-*/lib/google/protobuf/*.rb
 }

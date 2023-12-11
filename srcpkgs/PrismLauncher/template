@@ -1,10 +1,10 @@
 # Template file for 'PrismLauncher'
 pkgname=PrismLauncher
-version=5.1
+version=8.0
 revision=1
 build_style=cmake
-configure_args="-DLauncher_BUILD_PLATFORM=Void"
-hostmakedepends="extra-cmake-modules openjdk8 pkg-config qt5-host-tools
+configure_args="-DLauncher_BUILD_PLATFORM=Void -DLauncher_QT_VERSION_MAJOR='5'"
+hostmakedepends="extra-cmake-modules openjdk17 pkg-config qt5-host-tools
  qt5-qmake scdoc"
 makedepends="qt5-devel"
 depends="virtual?java-runtime qt5-svg qt5-imageformats"
@@ -13,7 +13,7 @@ maintainer="Philipp David <pd@3b.pm>"
 license="GPL-3.0-only"
 homepage="https://prismlauncher.org/"
 distfiles="https://github.com/PrismLauncher/PrismLauncher/releases/download/${version}/PrismLauncher-${version}.tar.gz"
-checksum=d5774911c2fde98f6b663c76084e49e8f664a0f21e13da9196072d38191a7d1e
+checksum=462f35eeda6e107b5f23a97500accf43e4227a0fb40145b29d0895bcfe3372b0
 
 if [ -z "$XBPS_CHECK_PKGS" ]; then
 	configure_args+=" -DBUILD_TESTING=0"
@@ -40,10 +40,4 @@ pre_configure() {
 
 post_install() {
 	vdoc ${FILESDIR}/README.voidlinux
-}
-
-PolyMC_package() {
-	depends="${sourcepkg}>=${version}_${revision}"
-	short_desc+=" (transitional dummy package)"
-	build_style=meta
 }

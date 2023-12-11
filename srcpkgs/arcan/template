@@ -21,7 +21,7 @@ makedepends="MesaLib-devel ffmpeg-devel file-devel freetype-devel liblzma-devel
  $(vopt_if wayland 'wayland-devel wayland-protocols libxcb-devel xcb-util-wm-devel')
  "
 short_desc="Combined display server, multimedia framework and game engine"
-maintainer="Piraty <piraty1@inbox.ru>"
+maintainer="Piraty <mail@piraty.dev>"
 license="GPL-2.0-or-later, LGPL-2.0-or-later, BSD-3-Clause"
 homepage="https://arcan-fe.com/"
 _versionOpenal=0.5.4
@@ -43,11 +43,6 @@ build_options_default="tesseract wayland"
 # luajit is restricted to matching wordsize of host/target
 if [ "$XBPS_TARGET_WORDSIZE" = "$XBPS_WORDSIZE" ]; then
 	build_options_default+=" luajit"
-fi
-
-if [ "$XBPS_TARGET_NO_ATOMIC8" ]; then
-	makedepends+=" libatomic-devel"
-	CFLAGS="-latomic"
 fi
 
 post_extract() {

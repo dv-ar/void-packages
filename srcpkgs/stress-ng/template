@@ -1,6 +1,6 @@
 # Template file for 'stress-ng'
 pkgname=stress-ng
-version=0.15.00
+version=0.17.01
 revision=1
 build_style=gnu-makefile
 make_use_env=1
@@ -9,9 +9,9 @@ maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="GPL-2.0-or-later"
 homepage="https://github.com/ColinIanKing/stress-ng/"
 distfiles="https://github.com/ColinIanKing/stress-ng/archive/refs/tags/V${version}.tar.gz"
-checksum=cdb18c7dfcdeb0ff2d716c141341d1b2ca6051e4338cee3a555a65f26958c256
+checksum=b628409c1934bd4f0ac4b390a5253d383ffb8f962931379c7fb9bb2852ffcbe9
 
-case "$XBPS_MACHINE" in
-	# stress-vecshuf.c:107:39: internal compiler error: in expand_debug_locations, at cfgexpand.c:5458
-	x86_64) nodebug=yes;;
-esac
+if [ "$XBPS_TARGET_LIBC" = "musl" ]; then
+	makedepends+=" musl-legacy-compat"
+fi
+

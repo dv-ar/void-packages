@@ -1,18 +1,20 @@
 # Template file for 'runc'
 pkgname=runc
-version=1.1.4
+version=1.1.10
 revision=1
 build_style=go
 go_import_path=github.com/opencontainers/runc
 go_build_tags="seccomp apparmor"
+go_ldflags="-X main.version=${version}"
 hostmakedepends="pkg-config go-md2man"
 makedepends="libseccomp-devel"
 short_desc="CLI tool for spawning and running OCI containers"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="Apache-2.0"
 homepage="https://github.com/opencontainers/runc"
+changelog="https://github.com/opencontainers/runc/raw/main/CHANGELOG.md"
 distfiles="https://github.com/opencontainers/runc/releases/download/v${version}/runc.tar.xz"
-checksum=9f5972715dffb0b2371e4d678c1206cc8c4ec5eb80f2d48755d150bac49be35b
+checksum=bd3e89ae89319ef344e7e26f392b40e344bcd5bbdea84ca459a43189451615bf
 
 post_build() {
 	make man

@@ -1,7 +1,7 @@
 # Template file for 'WoeUSB'
 pkgname=WoeUSB
 version=3.3.1
-revision=3
+revision=4
 build_style=gnu-configure
 configure_args="--with-wx-config=wx-config-gtk3"
 hostmakedepends="automake gettext libtool"
@@ -14,6 +14,8 @@ homepage="https://github.com/slacka/WoeUSB"
 distfiles="https://github.com/slacka/WoeUSB/archive/v${version}.tar.gz"
 checksum=0cab88a1113506f39d2f1c19532b2cd8d968c6a9f59129953c000e29e73f3d4f
 
+CXXFLAGS="-D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64"
+
 post_patch() {
 	vsed -i -e "s/@@WOEUSB_VERSION@@/$version/g" \
 		configure.ac \
@@ -24,11 +26,7 @@ pre_configure() {
 	autoreconf -fi
 }
 
-WoeUSB-cli_package() {
-	depends="bash grub ntfs-3g parted wget"
-	short_desc+=" - command line only"
-	pkg_install() {
-		vmove usr/bin/woeusb
-		vmove usr/share/man/man1/woeusb.1
-	}
+post_install() {
+	rm -f ${DESTDIR}/usr/bin/woeusb
+	rm -f ${DESTDIR}/usr/share/man/man1/woeusb.1
 }

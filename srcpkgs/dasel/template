@@ -1,10 +1,10 @@
 # Template file for 'dasel'
 pkgname=dasel
-version=1.27.3
+version=2.4.1
 revision=1
 build_style=go
 build_helper=qemu
-go_import_path=github.com/tomwright/dasel
+go_import_path=github.com/tomwright/dasel/v2
 go_package="${go_import_path}/cmd/dasel"
 go_ldflags="-X ${go_import_path}/internal.Version=${version}"
 short_desc="Query and modify data structures using selector strings"
@@ -12,8 +12,8 @@ maintainer="Daniel Eyßer <daniel.eysser@gmail.com>"
 license="MIT"
 homepage="https://daseldocs.tomwright.me/"
 changelog="https://raw.githubusercontent.com/TomWright/dasel/master/CHANGELOG.md"
-distfiles="https://github.com/TomWright/dasel/archive/v${version}.tar.gz"
-checksum=1dfd0bf372ab252931adc636887c1d34a75e9ac767b5e6baabf9fd91fdfa15a6
+distfiles="https://github.com/TomWright/dasel/archive/refs/tags/v${version}.tar.gz"
+checksum=eb44263c792ff3b31e5a5086d01b471d07a4282af6716932f12f76bb8cd4eebd
 
 post_install() {
 	vlicense LICENSE

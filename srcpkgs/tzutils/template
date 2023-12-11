@@ -1,6 +1,6 @@
 # Template file for 'tzutils'
 pkgname=tzutils
-version=2022f
+version=2023c
 revision=2
 bootstrap=yes
 short_desc="Time zone and daylight-saving time utilities"
@@ -8,21 +8,10 @@ maintainer="Đoàn Trần Công Danh <congdanhqx@gmail.com>"
 license="Public Domain"
 homepage="https://www.iana.org/time-zones"
 distfiles="https://www.iana.org/time-zones/repository/releases/tzdb-${version}.tar.lz"
-checksum=180343dda8b24e000d8f718ab5871efa2ec0ed7725ba9a4267b8bd36af155bc2
+checksum=08fd090f1a16d522ae4e9247445056f4155002239e5be760b31ba0376d2e632c
 
 if [ "$CROSS_BUILD" ]; then
 	hostmakedepends="tzutils"
-fi
-
-if [ "$XBPS_TARGET_WORDSIZE" = 32 ]; then
-	# enforce 64-bit time_t for Y2038
-	CFLAGS="-Dtime_tz=int64_t"
-	license+=", BSD-3-Clause"
-fi
-
-# https://mm.icann.org/pipermail/tz/2022-October/032154.html
-if [ "$XBPS_TARGET_LIBC" = musl ]; then
-	CFLAGS+=" -DTM_ZONE=tm_zone -DTM_GMTOFF=tm_gmtoff"
 fi
 
 do_build() {
@@ -66,5 +55,6 @@ tzdata_package() {
 	pkg_install() {
 		vmove usr/share/man/man5
 		vmove "usr/share/zoneinfo*"
+		vinstall leap-seconds.list 644 usr/share/zoneinfo
 	}
 }

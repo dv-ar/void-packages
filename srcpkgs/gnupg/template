@@ -1,30 +1,40 @@
 # Template file for 'gnupg'
+# minor version updates (2.3-> 2.4) often need a fix in reverse dependencies
 pkgname=gnupg
-version=2.3.8
-revision=1
+version=2.4.3
+revision=2
+# We're building outside of the source tree, because upstream told us to:
+# https://dev.gnupg.org/T6313#166339
+build_wrksrc=build
 build_style=gnu-configure
 configure_args="$(vopt_enable ldap)
  --with-libgcrypt-prefix=${XBPS_CROSS_BASE}/usr
  --with-libassuan-prefix=${XBPS_CROSS_BASE}/usr
  --with-ksba-prefix=${XBPS_CROSS_BASE}/usr
- --with-npth-prefix=${XBPS_CROSS_BASE}/usr"
+ --with-npth-prefix=${XBPS_CROSS_BASE}/usr
+ --enable-all-tests"
+configure_script="../configure"
 hostmakedepends="pkg-config gettext"
 makedepends="bzip2-devel gnutls-devel libassuan-devel libcurl-devel
  libksba-devel libldap-devel libusb-compat-devel npth-devel sqlite-devel
- libgcrypt-devel"
+ libgcrypt-devel libgpg-error-devel"
 depends="pinentry"
 short_desc="GNU Privacy Guard (2.x)"
 maintainer="Jan Christian Grünhage <jan.christian@gruenhage.xyz>"
 license="GPL-3.0-or-later"
 homepage="https://www.gnupg.org/"
 distfiles="https://gnupg.org/ftp/gcrypt/gnupg/gnupg-${version}.tar.bz2"
-checksum=540b7a40e57da261fb10ef521a282e0021532a80fd023e75fb71757e8a4969ed
+checksum=a271ae6d732f6f4d80c258ad9ee88dd9c94c8fdc33c3e45328c4d7c126bd219d
+make_check_pre='env TESTFLAGS="--parallel=${XBPS_MAKEJOBS}"'
 build_options="ldap"
 build_options_default="ldap"
 
+post_extract() {
+	mkdir build
+}
+
 post_install() {
 	vmkdir usr/share/examples
-	rm -r $DESTDIR/usr/share/doc/gnupg/examples/systemd-user
 	mv ${DESTDIR}/usr/share/doc/gnupg/examples \
 		${DESTDIR}/usr/share/examples/gnupg
 }

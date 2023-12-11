@@ -1,7 +1,7 @@
 # Template file for 'kio'
 pkgname=kio
-version=5.100.0
-revision=2
+version=5.112.0
+revision=1
 build_style=cmake
 configure_args="-DBUILD_DESIGNERPLUGIN=ON
  -DDESKTOPTOJSON_EXECUTABLE=/usr/bin/desktoptojson"
@@ -16,7 +16,7 @@ maintainer="John <me@johnnynator.dev>"
 license="LGPL-2.0-or-later"
 homepage="https://invent.kde.org/frameworks/kio"
 distfiles="${KDE_SITE}/frameworks/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=088788d32eb38016d92c2fdfe29f337332089efa1f0d3a810cf807c2646d7cb6
+checksum=84b8531c077fe8854f9fa69f6d2c120b222bf8334c14c6734dc14a429103fb99
 
 do_check() {
 	: # Pain to get working in limited enviroment, excpects e.g. real disks

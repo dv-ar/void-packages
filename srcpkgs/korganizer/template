@@ -1,6 +1,6 @@
 # Template file for 'korganizer'
 pkgname=korganizer
-version=22.08.2
+version=23.08.2
 revision=1
 build_style=cmake
 hostmakedepends="extra-cmake-modules qt5-qmake qt5-host-tools kdoctools
@@ -12,4 +12,4 @@ maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="https://kde.org/applications/en/office/org.kde.korganizer"
 distfiles="${KDE_SITE}/release-service/${version}/src/${pkgname}-${version}.tar.xz"
-checksum=4e599d0546f5fa66963ab114bdc05bb834668b7e228f653513b99c8813764298
+checksum=548c1ccc5f9efe308f04a5394670d344b9a4123e8c31428e2935d4c76e93a8b0

@@ -1,6 +1,6 @@
 # Template file for 'python3-pyqt6-sip'
 pkgname=python3-pyqt6-sip
-version=13.4.0
+version=13.5.2
 revision=2
 build_style=python3-module
 hostmakedepends="python3-devel python3-setuptools sip"
@@ -11,7 +11,7 @@ maintainer="Đoàn Trần Công Danh <congdanhqx@gmail.com>"
 license="GPL-2.0-only, GPL-3.0-only, custom:SIP"
 homepage="https://www.riverbankcomputing.com/software/sip/"
 distfiles="${PYPI_SITE}/P/PyQt6_sip/PyQt6_sip-${version}.tar.gz"
-checksum=6d87a3ee5872d7511b76957d68a32109352caf3b7a42a01d9ee20032b350d979
+checksum=ebf6264b6feda01ba37d3b60a4bb87493bdb87be70f7b2a5384a7acd4902d88d
 lib32disabled=yes
 
 post_extract() {

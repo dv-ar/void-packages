@@ -1,9 +1,8 @@
 # Template file for 'python3-ytmusicapi'
 pkgname=python3-ytmusicapi
-version=0.24.0
-revision=3
+version=1.3.2
+revision=1
 build_style=python3-pep517
-make_install_target="dist/ytmusicapi-*.*.*-*-*-*.whl"
 hostmakedepends="python3-setuptools_scm python3-wheel"
 depends="python3-requests"
 checkdepends="$depends python3-coverage"
@@ -12,7 +11,7 @@ maintainer="Andrew Benson <abenson+void@gmail.com>"
 license="MIT"
 homepage="https://github.com/sigma67/ytmusicapi"
 distfiles="${PYPI_SITE}/y/ytmusicapi/ytmusicapi-${version}.tar.gz"
-checksum=bdb496801cdeded14b1291dd8772578a3de6e51ea20214d28eb08c6922d96a56
+checksum=7ed58c1b80b24450955a43b4aceadb3c9e49cd1b3758f7d5bf1c7fb875bdfd5b
 
 post_install() {
 	vlicense LICENSE

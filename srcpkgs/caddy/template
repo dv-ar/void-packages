@@ -1,23 +1,26 @@
 # Template file for 'caddy'
 pkgname=caddy
-version=2.6.2
+version=2.7.5
 revision=1
 build_style=go
 go_import_path=github.com/caddyserver/caddy/v2
 go_package="${go_import_path}/cmd/caddy"
+hostmakedepends="go1.20"
 depends="shared-mime-info"
 short_desc="Fast, cross-platform HTTP/2 web server with automatic HTTPS"
-maintainer="Dominic Monroe <monroef4@googlemail.com>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="Apache-2.0"
 homepage="https://caddyserver.com"
+changelog="https://github.com/caddyserver/caddy/releases"
 distfiles="https://github.com/caddyserver/caddy/archive/v${version}.tar.gz"
-checksum=563d027a78919f859188fb894ae5f3669508a3430db347aa726cd73c19fb7038
+checksum=eeaecc1ea18b7aa37ece168562beb1ab592767cbedfaa411040ae0301aaeeef1
 
 system_accounts="caddy"
 caddy_homedir="/var/lib/caddy"
 caddy_descr="caddy daemon"
 
 conf_files="/etc/caddy/Caddyfile"
+export GOTOOLCHAIN=go1.20
 
 make_dirs="
 	/etc/caddy 0700 caddy caddy

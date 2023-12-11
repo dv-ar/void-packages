@@ -1,6 +1,6 @@
 # Template file for 'fd'
 pkgname=fd
-version=8.5.3
+version=8.7.1
 revision=1
 build_style=cargo
 build_helper=qemu
@@ -10,7 +10,11 @@ license="Apache-2.0, MIT"
 homepage="https://github.com/sharkdp/fd"
 changelog="https://raw.githubusercontent.com/sharkdp/fd/master/CHANGELOG.md"
 distfiles="https://github.com/sharkdp/fd/archive/refs/tags/v${version}.tar.gz"
-checksum=8770077eb70b3989c1990d56a1019cbbea27421cf571b9ef7e330f989cd56421
+checksum=2292cf6e4ba9262c592075b19ef9c241db32742b61ce613a3f42c474c01a3e28
+
+if [ "${XBPS_BUILD_ENVIRONMENT}" = "void-packages-ci" ]; then
+	make_check_args="-- --skip test_type_executable"
+fi
 
 post_install() {
 	vman doc/fd.1

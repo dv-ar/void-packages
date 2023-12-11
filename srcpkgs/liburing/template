@@ -1,6 +1,6 @@
 # Template file for 'liburing'
 pkgname=liburing
-version=2.2
+version=2.4
 revision=1
 build_style=configure
 configure_args="--mandir=/usr/share/man"
@@ -9,8 +9,13 @@ short_desc="Linux-native io_uring I/O access library"
 maintainer="Dragon Friend <friend-dragon@proton.me>"
 license="LGPL-2.1-only"
 homepage="https://git.kernel.dk/cgit/liburing"
+changelog="https://git.kernel.dk/cgit/liburing/plain/CHANGELOG"
 distfiles="https://git.kernel.dk/cgit/liburing/snapshot/liburing-${version}.tar.gz"
-checksum=f52bad18e3ff11185165d52d2d7391e90a0fce8f33f2ee611ad9a8ce1feaf914
+checksum=b5fbb1f6d65d88a8b37cbf3f5d4a7fa38d1d9e928a83df79c6469ed816bbcacc
+
+do_check() {
+	make -C test
+}
 
 liburing-devel_package() {
 	short_desc+=" - development files"

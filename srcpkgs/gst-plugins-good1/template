@@ -1,10 +1,10 @@
 # Template file for 'gst-plugins-good1'
 pkgname=gst-plugins-good1
-version=1.20.3
+version=1.22.7
 revision=1
 build_style=meson
 configure_args="-Ddv=disabled -Ddv1394=disabled -Dshout2=disabled -Dqt5=enabled
- -Dgtk3=$(vopt_if gtk3 enabled disabled)"
+ $(vopt_feature gtk3 gtk3)"
 # XXX: libdv, dv1394 and shout2 modules.
 hostmakedepends="pkg-config intltool glib-devel orc qt5-qmake qt5-host-tools"
 makedepends="
@@ -21,8 +21,9 @@ short_desc="GStreamer set of well-maintained good plug-ins (1.x)"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="LGPL-2.1-or-later"
 homepage="https://gstreamer.freedesktop.org"
-distfiles="${homepage}/src/${pkgname/1/}/${pkgname/1/}-${version}.tar.xz"
-checksum=f8f3c206bf5cdabc00953920b47b3575af0ef15e9f871c0b6966f6d0aa5868b7
+changelog="https://gstreamer.freedesktop.org/releases/${version%.*}/#${version}"
+distfiles="https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-${version}.tar.xz"
+checksum=b6db0e18e398b52665b7cdce301c34a8750483d5f4fbac1ede9f80b03743cd15
 
 build_options="gtk3 wayland"
 build_options_default="gtk3 wayland"

@@ -1,18 +1,18 @@
 # Template file for 'sqlite'
 pkgname=sqlite
-version=3.40.0
+version=3.44.2
 revision=1
 _amalgamationver=$(printf "%d%02d%02d00\n" ${version//./ })
 build_style=gnu-configure
 configure_args="--enable-threadsafe --enable-dynamic-extensions --enable-fts5"
 makedepends="libedit-devel zlib-devel"
 short_desc="SQL Database Engine in a C Library"
-maintainer="Anthony Iliopoulos <ailiop@altatus.com>"
+maintainer="triallax <triallax@tutanota.com>"
 license="Public Domain"
 homepage="https://sqlite.org/"
 changelog="https://www.sqlite.org/changes.html"
-distfiles="https://sqlite.org/2022/sqlite-autoconf-${_amalgamationver}.tar.gz"
-checksum=0333552076d2700c75352256e91c78bf5cd62491589ba0c69aed0a81868980e7
+distfiles="https://sqlite.org/2023/sqlite-autoconf-${_amalgamationver}.tar.gz"
+checksum=1c6719a148bc41cf0f2bbbe3926d7ce3f5ca09d878f1246fcc20767b175bb407
 
 CFLAGS="-DSQLITE_ENABLE_DBSTAT_VTAB -DSQLITE_ENABLE_COLUMN_METADATA \
  -DSQLITE_ENABLE_UNLOCK_NOTIFY -DSQLITE_SECURE_DELETE \
@@ -34,7 +34,7 @@ pre_configure() {
 }
 
 sqlite-devel_package() {
-	depends="sqlite>=${version}_${revision}"
+	depends="${sourcepkg}>=${version}_${revision}"
 	short_desc+=" - development files"
 	pkg_install() {
 		vmove usr/include
