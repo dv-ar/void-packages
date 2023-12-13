@@ -6,10 +6,11 @@ pkgname=WineGUI
 revision=1
 short_desc="A user-friendly WINE manager" 
 version=2.1.0
-hostmakedepends="git ninja gtkmm-devel json-glib-devel pkg-config"
+hostmakedepends="git ninja gtkmm-devel json-glib-devel pkg-config bzip2"
 #makedepends=""
 depends="wine winetricks"
 distfiles="${homepage}/-/archive/v${version}/winegui-v${version}.tar.gz"
 checksum=33ca58d0c87540c664c5c7d32451eae1e570a006a99111749cf15d6deef5b6f0
 build_style=cmake
 configure_args="-GNinja -DCMAKE_INSTALL_PREFIX:PATH=/usr -DCMAKE_BUILD_TYPE=Release"
+make_check_pre="GIT_TAG_VERSION=${version}"
