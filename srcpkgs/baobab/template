@@ -1,14 +1,15 @@
 # Template file for 'baobab'
 pkgname=baobab
-version=42.0
+version=45.0
 revision=1
 build_style=meson
-hostmakedepends="gettext pkg-config itstool glib-devel vala"
+hostmakedepends="gettext pkg-config itstool glib-devel vala desktop-file-utils gtk-update-icon-cache"
 makedepends="gtk4-devel libadwaita-devel vala-devel gsettings-desktop-schemas-devel"
 depends="hicolor-icon-theme desktop-file-utils gsettings-desktop-schemas>=3.14"
 short_desc="Graphical directory tree analyzer for GNOME"
 maintainer="Enno Boland <gottox@voidlinux.org>"
 license="GPL-2.0-or-later, GFDL-1.1-or-later"
 homepage="https://wiki.gnome.org/action/show/Apps/DiskUsageAnalyzer"
-distfiles="${GNOME_SITE}/${pkgname}/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=4b1aabe6bab1582b3fea79a2829bce7f2415bb6e5062f25357aeedd5317a50dc
+changelog="https://gitlab.gnome.org/GNOME/baobab/-/raw/main/NEWS"
+distfiles="${GNOME_SITE}/baobab/${version%.*}/baobab-${version}.tar.xz"
+checksum=a7d2cf308a6c839ee0b0bf074f8f5fd60d62ae2f064a94b3c610d6560b758e86

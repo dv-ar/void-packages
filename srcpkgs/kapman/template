@@ -1,6 +1,6 @@
 # Template file for 'kapman'
 pkgname=kapman
-version=22.04.1
+version=23.08.5
 revision=1
 build_style=cmake
 hostmakedepends="extra-cmake-modules qt5-qmake qt5-host-tools kdoctools kconfig
@@ -13,4 +13,4 @@ license="GPL-2.0-or-later"
 homepage="https://kde.org/applications/games/org.kde.kapman"
 changelog="https://kde.org/announcements/changelogs/gear/${version}/#kapman"
 distfiles="${KDE_SITE}/release-service/${version}/src/kapman-${version}.tar.xz"
-checksum=730a218d8a2fcd2b7f736b2c3875642ba7fc79590654125ab293d6aeeaafd5a8
+checksum=e3755f000532bae7cb41e521d7ac7b9d2cb43eb2b1cf705af1249ba366cea1e7

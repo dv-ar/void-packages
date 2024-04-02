@@ -1,21 +1,21 @@
 # Template file for 'tepl'
 pkgname=tepl
-version=6.1.1
+version=6.8.0
 revision=1
 build_style=meson
 build_helper=gir
 configure_args="$(vopt_bool gir gobject_introspection) $(vopt_bool gtk_doc gtk_doc)"
 hostmakedepends="glib-devel pkg-config gettext $(vopt_if gtk_doc gtk-doc)"
-makedepends="amtk-devel libglib-devel gtksourceview4-devel gtk+3-devel
+makedepends="libgedit-amtk-devel libglib-devel libgedit-gtksourceview-devel gtk+3-devel
  libxml2-devel uchardet-devel gsettings-desktop-schemas-devel"
 checkdepends="xvfb-run"
 short_desc="Text editor product line"
 maintainer="Enno Boland <gottox@voidlinux.org>"
-license="GPL-3.0-or-later"
+license="LGPL-3.0-or-later"
 homepage="https://wiki.gnome.org/Projects/Tepl"
 changelog="https://gitlab.gnome.org/swilmet/tepl/-/raw/main/NEWS"
-distfiles="${GNOME_SITE}/${pkgname}/${version%.*}/${pkgname}-${version}.tar.xz"
-checksum=a0fbcbcf82dbcb031e1cbea286ab3edc70d5a6ea4125038242a1b1d3ff0278aa
+distfiles="${GNOME_SITE}/tepl/${version%.*}/tepl-${version}.tar.xz"
+checksum=46e6e5f1bfdbc52e5956f06add575e9c7697c673d53d3803dfe768f490b560f0
 make_check_pre="xvfb-run"
 
 build_options="gir gtk_doc"

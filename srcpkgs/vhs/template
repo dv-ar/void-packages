@@ -1,6 +1,6 @@
 # Template file for 'vhs'
 pkgname=vhs
-version=0.1.0
+version=0.7.1
 revision=1
 build_style=go
 build_helper=qemu
@@ -11,18 +11,20 @@ short_desc="Your CLI home video recorder"
 maintainer="Marcin Puc <tranzystorek.io@protonmail.com>"
 license="MIT"
 homepage="https://github.com/charmbracelet/vhs"
+changelog="https://github.com/charmbracelet/vhs/releases"
 distfiles="https://github.com/charmbracelet/vhs/archive/refs/tags/v${version}.tar.gz"
-checksum=7a1d36482dec0ab158bef852fa0f9e90ce6b7011bc9dd56244fd84692e17433b
+checksum=90b3a38a76776fad1e6d989b4f4a6da2f877e6f832ad1d123ff608cffe2aab1c
 
 post_install() {
+	vdoc "${FILESDIR}/README.voidlinux"
 	vlicense LICENSE
 
-	VHS="${DESTDIR}/usr/bin/vhs"
+	local vhs="${DESTDIR}/usr/bin/vhs"
 	for shell in bash fish zsh; do
-		vtargetrun ${VHS} completion ${shell} > vhs.${shell}
+		vtargetrun ${vhs} completion ${shell} > vhs.${shell}
 		vcompletion vhs.${shell} ${shell}
 	done
 
-	vtargetrun ${VHS} manual > vhs.1
+	vtargetrun ${vhs} manual > vhs.1
 	vman vhs.1
 }

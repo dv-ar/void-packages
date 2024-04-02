@@ -1,6 +1,6 @@
 # Template file for 'entr'
 pkgname=entr
-version=5.2
+version=5.5
 revision=1
 build_style=gnu-makefile
 short_desc="Utility for running arbitrary commands when files change"
@@ -9,7 +9,7 @@ license="ISC"
 homepage="https://eradman.com/entrproject/"
 changelog="https://raw.githubusercontent.com/eradman/entr/master/NEWS"
 distfiles="https://eradman.com/entrproject/code/entr-${version}.tar.gz"
-checksum=237e309d46b075210c0e4cb789bfd0c9c777eddf6cb30341c3fe3dbcc658c380
+checksum=128c0ce2efea5ae6bd3fd33c3cd31e161eb0c02609d8717ad37e95b41656e526
 
 post_extract() {
 	case "$XBPS_TARGET_MACHINE" in

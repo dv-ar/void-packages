@@ -1,26 +1,21 @@
 # Template file for 'faad2'
 pkgname=faad2
-version=2.10.0
+version=2.11.1
 revision=1
-build_style=gnu-configure
-hostmakedepends="autoconf automake libtool"
+build_style=cmake
+# hostmakedepends="autoconf automake libtool"
 short_desc="AAC decoding library"
-maintainer="Nathan <ndowens@artixlinux.org>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-2.0-or-later"
 homepage="http://www.audiocoding.com/"
-distfiles="https://github.com/knik0/faad2/archive/${version//./_}.tar.gz"
-checksum=0c6d9636c96f95c7d736f097d418829ced8ec6dbd899cc6cc82b728480a84bfb
-
-pre_configure() {
-	autoreconf -vfi
-}
+distfiles="https://github.com/knik0/faad2/archive/${version}.tar.gz"
+checksum=72dbc0494de9ee38d240f670eccf2b10ef715fd0508c305532ca3def3225bb06
 
 faad2-devel_package() {
 	depends="${sourcepkg}>=${version}_${revision}"
 	short_desc+=" - development files"
 	pkg_install() {
 		vmove usr/include
-		vmove "usr/lib/*.a"
 		vmove "usr/lib/*.so"
 		vmove usr/lib/pkgconfig
 	}

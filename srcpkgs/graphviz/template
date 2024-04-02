@@ -1,9 +1,9 @@
 # Template file for 'graphviz'
 pkgname=graphviz
-version=7.0.2
+version=10.0.1
 revision=1
 build_style=gnu-configure
-configure_args="--with-gts"
+configure_args="--with-gts --with-ann=no"
 make_build_args="HOSTCC=$BUILD_CC"
 hostmakedepends="automake flex libltdl-devel libtool perl pkg-config python3"
 makedepends="libpng-devel gd-devel gtk+-devel librsvg-devel libltdl-devel
@@ -16,7 +16,7 @@ license="EPL-1.0"
 homepage="https://www.graphviz.org"
 changelog="https://gitlab.com/graphviz/graphviz/-/raw/main/CHANGELOG.md"
 distfiles="https://gitlab.com/graphviz/graphviz/-/archive/${version}/graphviz-${version}.tar.gz"
-checksum=be2bc8ccefbacd2d9b114d311b5f7644d9deab0af05f49fcc3c1f47156ed5025
+checksum=28f452ef1cb12288c8758a62f8c3fcfefdb91b251f7aae61d0d703f851bde931
 
 # `make check` is broken:
 # https://gitlab.com/graphviz/graphviz/-/issues/2112
@@ -54,14 +54,5 @@ graphviz-devel_package() {
 		vmove "usr/lib/*.so"
 		vmove usr/lib/pkgconfig
 		vmove usr/share/man/man3
-	}
-}
-
-graphviz-gtk_package() {
-	depends="graphviz>=${version}_${revision}"
-	short_desc+=" - gtk plugin"
-	pkg_install() {
-		vmove "usr/lib/graphviz/libgvplugin_gdk.*"
-		vmove "usr/lib/graphviz/libgvplugin_gtk.*"
 	}
 }

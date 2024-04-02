@@ -1,30 +1,36 @@
 # Template file for 'prometheus'
 pkgname=prometheus
-version=2.38.0
-revision=1
+version=2.49.1
+revision=2
 build_style=go
 go_import_path="github.com/prometheus/prometheus"
 go_package="github.com/prometheus/prometheus/cmd/prometheus github.com/prometheus/prometheus/cmd/promtool"
-go_ldflags="-X ${go_import_path}/version.Version=${version}
- -X ${go_import_path}/version.Revision=${version}
- -X ${go_import_path}/version.Branch=${version}
- -X ${go_import_path}/version.BuildUser=VoidLinux"
+go_ldflags="-X github.com/prometheus/common/version.Version=${version}
+ -X github.com/prometheus/common/version.Revision=${version}
+ -X github.com/prometheus/common/version.Branch=${version}
+ -X github.com/prometheus/common/version.BuildDate=$(date --date "@$SOURCE_DATE_EPOCH" "+%Y%m%d-%H:%M:%S")
+ -X github.com/prometheus/common/version.BuildUser=VoidLinux"
 go_build_tags="netgo,builtinassets"
 hostmakedepends="yarn"
 conf_files="/etc/prometheus/prometheus.yml"
 short_desc="Monitoring system and time series database"
 maintainer="Toyam Cox <Vaelatern@voidlinux.org>"
-license="Apache-2.0"
+license="Apache-2.0, MIT"
 homepage="https://prometheus.io/"
 changelog="https://raw.githubusercontent.com/prometheus/prometheus/master/CHANGELOG.md"
 distfiles="https://github.com/prometheus/prometheus/archive/v${version}.tar.gz"
-checksum=311f9f2f867ee0f2bef5c8227bbf672edf4037b6fd5e036c45ed7e947d61c375
+checksum=985d7f45ed3d16e23a30eae490c17911518fae96cba0245d493eb07097a10b3b
 
 system_accounts="_prometheus"
 
 make_dirs="/var/lib/prometheus 700 _prometheus _prometheus"
 
 pre_build() {
+	# Need to patch node fs to avoid using too many file descriptors
+	(cd web/ui && yarn add --dev -W graceful-fs@4.2.11)
+	echo "require('graceful-fs').gracefulify(require('fs'));" \
+		> "${wrksrc}/web/ui/use-graceful-fs.js"
+	export NODE_OPTIONS="--require ${wrksrc}/web/ui/use-graceful-fs.js"
 	CGO_ENABLED=0 GOARCH= make assets assets-compress
 }
 

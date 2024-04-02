@@ -1,25 +1,19 @@
 # Template file for 'amtk'
 pkgname=amtk
-version=5.4.1
+version=5.6.1
 revision=2
 build_style=meson
 build_helper="gir"
-configure_args="$(vopt_bool gir gobject_introspection) $(vopt_bool gtk_doc)"
-hostmakedepends="pkg-config glib-devel gettext $(vopt_if gtk_doc gtk-doc)"
+configure_args="-Dgobject_introspection=false -Dgtk_doc=false"
+hostmakedepends="pkg-config glib-devel gettext"
 makedepends="gtk+3-devel libglib-devel"
+depends="libgedit-amtk"
 short_desc="Actions, Menus and Toolbars Kit for GTK+ applications"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="LGPL-2.1-or-later"
 homepage="https://gitlab.gnome.org/World/amtk"
 distfiles="${GNOME_SITE}/amtk/${version%.*}/amtk-${version}.tar.xz"
-checksum=7ebabc429b0eebb2b32360c9bfdbe368e489b35c3cdc086a856cfc9b3a466a72
-
-build_options="gir gtk_doc"
-build_options_default="gir"
-
-if ! [ "$CROSS_BUILD" ]; then
-	build_options_default+=" gtk_doc"
-fi
+checksum=d50115b85c872aac296934b5ee726a3fa156c6f5ad96d27e0edd0aa5ad173228
 
 amtk-devel_package() {
 	depends="${sourcepkg}>=${version}_${revision} gtk+3-devel libglib-devel"
@@ -27,12 +21,6 @@ amtk-devel_package() {
 	pkg_install() {
 		vmove usr/include
 		vmove usr/lib/pkgconfig
-		if [ "$build_option_gtk_doc" ]; then
-			vmove usr/share/gtk-doc
-		fi
-		if [ "$build_option_gir" ]; then
-			vmove usr/share/gir-1.0
-		fi
 		vmove "usr/lib/*.so"
 	}
 }

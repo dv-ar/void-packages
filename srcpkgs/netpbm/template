@@ -1,10 +1,10 @@
 # Template file for 'netpbm'
 pkgname=netpbm
 # from http://svn.code.sf.net/p/netpbm/code/advanced/doc/HISTORY
-version=11.00.02
+version=11.05.03
 revision=1
-_githash=7252cf16ee0ef58bc89c29e103760b5ca85e995d
-_githash_guide=9d72d65003b20163f6a3a551bca9e4674288a5a7
+_githash=19387d1be30e80e8c4e865bfe053aed1094ca8af
+_githash_guide=6b76a2a4c4ca084113a87c1e7e8376609a722626
 create_wrksrc=yes
 build_wrksrc="netpbm-mirror-${_githash}"
 hostmakedepends="flex perl pkg-config python3"
@@ -16,8 +16,8 @@ license="BSD-3-Clause,GPL-2.0-only,custom:netpbm"
 homepage="http://netpbm.sourceforge.net/"
 distfiles="https://github.com/leahneukirchen/netpbm-mirror/archive/${_githash}.tar.gz
  https://github.com/leahneukirchen/netpbm-mirror/archive/${_githash_guide}.tar.gz"
-checksum="2bd97714eecf13bb832aa1e60d773183845d19977f7628f358eb5731a166e5fb
- d172e563578b58152bf3938e0eaab873208325cc7f6c29f105f75bf5cf3fb256"
+checksum="3d098112c776f4bf23078ea08f6bc49f690f75abdf238eb65471657f5c874f78
+ f846e4a226a35924fffe01050177fb4959a21020f9ac067687ede05424071a12"
 
 post_extract() {
 	cd $build_wrksrc
@@ -26,7 +26,6 @@ post_extract() {
 	done
 
 	cd ../netpbm-mirror-${_githash_guide}
-	vsed -i 's/ id="pamhomography"//g' pamhomography.html
 }
 
 do_configure() {

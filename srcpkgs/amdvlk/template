@@ -1,14 +1,15 @@
 # Template file for 'amdvlk'
 pkgname=amdvlk
-version=2022.Q4.1
+version=2023.Q2.3
 revision=1
-_xgl_commit=8a67c76eedb8400fb5d3b1e7b6a3894efdc7a3b9
-_pal_commit=c2af6fc4c14ea61273bcf5576f8a83a12b945dd7
-_llpc_commit=9db0ba4c968bbfe2f3e7e546d17cbfd07dcfdc9e
-_gpurt_commit=2874e509b677d78ddb3faae90989dd45e60669b3
-_llvm_project_commit=d2b67605e4dd5dc50d0afbeb4f20f29cce97b207
+_xgl_commit=6288905587fafc221b60045bceba73cf26e433ad
+_pal_commit=f01505f7fe4b38b573a41cb4d9d66d00e0c256f0
+_llpc_commit=f44e737f5e13eca803f465fc86532c24608c4daf
+_gpurt_commit=a1103572dfcc29c7baee04e2ececedca8fda86d7
+_llvm_project_commit=02394516f587d6bdb606b068fe604284f5c6a007
 _MetroHash_commit=18893fb28601bb9af1154cd1a671a121fff6d8d3
 _CWPack_commit=4f8cf0584442a91d829d269158567d7ed926f026
+_llvm_dialects_commit=e7464fe6373553fa1b1c1398417d7bb76d7931ef
 archs="i686* x86_64*"
 create_wrksrc=yes
 build_wrksrc="xgl"
@@ -31,26 +32,23 @@ distfiles="https://github.com/GPUOpen-Drivers/AMDVLK/archive/v-${version}.tar.gz
  https://github.com/GPUOpen-Drivers/pal/archive/${_pal_commit}.tar.gz
  https://github.com/GPUOpen-Drivers/llvm-project/archive/${_llvm_project_commit}.tar.gz
  https://github.com/GPUOpen-Drivers/MetroHash/archive/${_MetroHash_commit}.tar.gz
- https://github.com/GPUOpen-Drivers/CWPack/archive/${_CWPack_commit}.tar.gz"
-checksum="b72a1a977a0fadb57248af98278eac2916a63705881a8e6f86210a9f39652188
- 75e8aecf09b03dfe8a2c48dff3fd56d027e0ca1a45bf889be8ba597d52da104f
- ef813719b5cdf1ae1b20c29ff0c1ccddb8153262ebfe6f45977b6faa98966528
- 5a97b3a714c0b508b9bc2ee4f8902bf32fdc8bef6cdb36f997bcb48e8b940888
- b0b18d2ae80b49b5d6992bd80cec87199fb4dd2f242bff20b088355b0a422836
- d777d461bbe0b84734702ed13d7f13e5ef5d7ed093a1be4ee9deba1f32fac65b
+ https://github.com/GPUOpen-Drivers/CWPack/archive/${_CWPack_commit}.tar.gz
+ https://github.com/GPUOpen-Drivers/llvm-dialects/archive/${_llvm_dialects_commit}.tar.gz"
+checksum="0fd70d472200c98dabdf86b58a0cf7a1af1a46dd32d02d165676faa8dedf16f7
+ 42bf8f0410e48f3e33ad4f728416f769e59d26089dfc259441a0d3f96a1e081a
+ 629778956dcab9afe42450f3048e189c24b4c22862c90524df1de3910a5bbb86
+ 53d5dbcbeae08809a5d7a0c109be07a24bb97bef1ff5099de0666dd72f57ccfb
+ 75ec3380afa1cc3baf55897f72573c84849b70c0e97c36b311761bb2aa9fcb58
+ a2054e610ef420b083f0ca071f62a9f51db29e3c246ba3de2f5d0437b722e611
  141e6c156a834b8e0f90ba108664d7f35193df11acddefa117f394dbf2b7371a
- 87ed9209c129f47d0b64c914fb99d6c69e59a257445ec3a394c3e00d5e2b4484"
+ 87ed9209c129f47d0b64c914fb99d6c69e59a257445ec3a394c3e00d5e2b4484
+ 6c1c0e9f7dae4848bf5106d4b89f310e4c269a575b74daced547933abd14c7ee"
 nocross=yes
 lib32files="/usr/share/vulkan/icd.d/amd_icd32.json"
 
 case "$XBPS_TARGET_MACHINE" in
 	i686*) nodebug=yes;;
 esac
-
-pre_build() {
-	pwd
-	ninja -C build GpuRtGenerateShaders
-}
 
 post_extract() {
 	mv ${wrksrc}/AMDVLK-v-${version} ${wrksrc}/AMDVLK
@@ -62,6 +60,8 @@ post_extract() {
 	mkdir ${wrksrc}/third_party
 	mv ${wrksrc}/MetroHash-${_MetroHash_commit} ${wrksrc}/third_party/metrohash
 	mv ${wrksrc}/CWPack-${_CWPack_commit} ${wrksrc}/third_party/cwpack
+	rmdir ${wrksrc}/llpc/imported/llvm-dialects/
+	mv ${wrksrc}/llvm-dialects-${_llvm_dialects_commit}/ ${wrksrc}/llpc/imported/llvm-dialects/
 }
 
 pre_configure() {

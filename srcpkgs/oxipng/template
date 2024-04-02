@@ -1,6 +1,6 @@
 # Template file for 'oxipng'
 pkgname=oxipng
-version=6.0.1
+version=9.0.0
 revision=1
 build_style=cargo
 short_desc="Multithreaded lossless PNG compression optimizer"
@@ -8,8 +8,8 @@ maintainer="icp <pangolin@vivaldi.net>"
 license="MIT"
 homepage="https://github.com/shssoichiro/oxipng"
 changelog="https://raw.githubusercontent.com/shssoichiro/oxipng/master/CHANGELOG.md"
-distfiles="https://github.com/shssoichiro/oxipng/archive/v${version}.tar.gz"
-checksum=02625687bf19263bc2d537f9f81f85784c5b729c003e9dbb8551126d0e28ba7a
+distfiles="https://github.com/shssoichiro/oxipng/archive/refs/tags/v${version}.tar.gz"
+checksum=534fa8f349f52b01c2ee4332cef25ce1311edca04209ac6d972e38b171550a1b
 
 post_install() {
 	vlicense LICENSE

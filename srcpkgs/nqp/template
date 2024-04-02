@@ -1,6 +1,6 @@
 # Template file for 'nqp'
 pkgname=nqp
-version=2022.07
+version=2023.11
 revision=1
 build_style=configure
 make_check_target=test
@@ -13,6 +13,9 @@ short_desc="Lightweight Raku-like environment for virtual machines"
 maintainer="Andy Weidenbaum <atweiden@tutanota.de>"
 license="Artistic-2.0"
 homepage="https://github.com/Raku/nqp"
-distfiles="https://rakudo.org/dl/nqp/${pkgname}-${version}.tar.gz"
-checksum=58081c106d672a5406018fd69912c8d485fd12bf225951325c50c929a8232268
+distfiles="https://rakudo.org/dl/nqp/nqp-${version}.tar.gz"
+checksum=e7176b1a6fbaa98c132e385f325c6211ff9f93c0a3f0a23ceb6ffe823747b297
+case "$XBPS_TARGET_MACHINE" in
+	arm*|aarch64*) disable_parallel_build=yes;;
+esac
 nocross=yes

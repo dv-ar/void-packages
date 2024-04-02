@@ -1,6 +1,6 @@
 # Template file for 'ktouch'
 pkgname=ktouch
-version=22.04.1
+version=23.08.5
 revision=1
 build_style=cmake
 hostmakedepends="extra-cmake-modules kconfig kcoreaddons kdoctools
@@ -13,7 +13,7 @@ depends="kqtquickcharts qt5-quickcontrols2 qt5-graphicaleffects"
 short_desc="Learn and practive touch typing"
 maintainer="1is7ac3 <isaac.qa13@gmail.com>"
 license="GPL-2.0-or-later"
-homepage="https://kde.org/applications/en/education/org.kde.ktouch"
+homepage="https://apps.kde.org/ktouch"
 changelog="https://kde.org/announcements/changelogs/gear/${version}/#ktouch"
 distfiles="${KDE_SITE}/release-service/${version}/src/ktouch-${version}.tar.xz"
-checksum=52cf92c131b75662c27d936a5811f1af13e428766deb4823df766cc07a3ae367
+checksum=2d102a73560da4676628bb138eeec2d847dd35db0224b9fd0a7016ebfef59c5d

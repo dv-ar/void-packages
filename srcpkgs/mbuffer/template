@@ -1,15 +1,15 @@
 # Template file for 'mbuffer'
 pkgname=mbuffer
-version=20211018
+version=20240107
 revision=1
 build_style=gnu-configure
 hostmakedepends="which"
 makedepends="openssl-devel"
 checkdepends="tar"
 short_desc="Buffer data streams with many additional functions"
-maintainer="Diogo Leal <diogo@diogoleal.com>"
+maintainer="Orphaned <orphan@voidlinux.org>"
 license="GPL-3.0-or-later"
 homepage="https://www.maier-komor.de/mbuffer.html"
 distfiles="https://www.maier-komor.de/software/mbuffer/mbuffer-${version}.tgz"
-checksum=e240c1e4e4ac14c28be8c660ec47d44ce16b1e8ec92aa907ad13004ffd5db6e3
+checksum=d78606e17dd9026a53236d5ecc07a70202d2642d17e3d907471cdb58a0458814
 conf_files="/etc/mbuffer.rc"

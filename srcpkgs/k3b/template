@@ -1,7 +1,7 @@
 # Template file for 'k3b'
 pkgname=k3b
-version=22.04.1
-revision=2
+version=23.08.5
+revision=1
 build_style=cmake
 hostmakedepends="extra-cmake-modules pkg-config qt5-qmake gettext
  qt5-host-tools kauth kdoctools kcoreaddons"
@@ -16,4 +16,4 @@ license="GPL-2.0-or-later"
 homepage="https://kde.org/applications/en/multimedia/org.kde.k3b"
 changelog="https://kde.org/announcements/changelogs/gear/${version}/#k3b"
 distfiles="${KDE_SITE}/release-service/${version}/src/${pkgname}-${version}.tar.xz"
-checksum=d79037e95c7d567b9e6453f9f6cb72f4d764d43180aa8854ee935a338ed354fb
+checksum=c789518b45c8505710fd2b66706c4826f251c5487d9b381df76cc96ffb59309a

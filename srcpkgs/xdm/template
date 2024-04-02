@@ -1,6 +1,6 @@
 # Template file for 'xdm'
 pkgname=xdm
-version=1.1.13
+version=1.1.15
 revision=1
 build_style=gnu-configure
 configure_args="--with-random-device=/dev/urandom
@@ -21,8 +21,16 @@ short_desc="X Display Manager"
 maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="MIT"
 homepage="http://xorg.freedesktop.org"
-distfiles="${XORG_SITE}/app/$pkgname-$version.tar.xz"
-checksum=e58267e8f1478f2f5cd57cbcf2367a36973860c3131a450a3e0816585af03264
+distfiles="${XORG_SITE}/app/${pkgname}-${version}.tar.xz"
+checksum=4bb028de68fa3ca918d46109123095c8ba89bea97c965ccc79c6387bfd84b172
+
+if [ "$XBPS_TARGET_LIBC" = "glibc" ]; then
+	makedepends+=" libxcrypt-devel"
+fi
+
+pre_configure() {
+	export DEF_USER_PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:/bin
+}
 
 post_install() {
 	vsv xdm

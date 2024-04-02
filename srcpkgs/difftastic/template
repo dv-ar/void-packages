@@ -1,6 +1,6 @@
 # Template file for 'difftastic'
 pkgname=difftastic
-version=0.38.0
+version=0.56.1
 revision=1
 build_style=cargo
 short_desc="Structural diff tool that understands syntax"
@@ -9,11 +9,13 @@ license="MIT"
 homepage="https://difftastic.wilfred.me.uk"
 changelog="https://raw.githubusercontent.com/Wilfred/difftastic/master/CHANGELOG.md"
 distfiles="https://static.crates.io/crates/difftastic/difftastic-${version}.crate"
-checksum=474dabe2b6d343167942e42312b0ce420f8f6dc8245b951c8874208cbafc4a7d
+checksum=a25962071fb286a42182f524e3d3251ef16ce3b6a5ed118289d6a2a20afe22ff
 
 if [ "$XBPS_TARGET_NO_ATOMIC8" ]; then
-	makedepends+=" libatomic-devel"
 	XBPS_CROSS_RUSTFLAGS+=" -latomic"
+	if [ -z "$CROSS_BUILD" ]; then
+		broken="how is this supposed to even work"
+	fi
 fi
 
 post_install() {

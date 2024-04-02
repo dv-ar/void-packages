@@ -1,6 +1,6 @@
 # Template file for 'libcbor'
 pkgname=libcbor
-version=0.9.0
+version=0.11.0
 revision=1
 build_style=cmake
 configure_args="-DBUILD_SHARED_LIBS=ON"
@@ -9,7 +9,7 @@ maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="MIT"
 homepage="https://github.com/PJK/libcbor"
 distfiles="https://github.com/PJK/libcbor/archive/v${version}.tar.gz"
-checksum=da81e4f9333e0086d4e2745183c7052f04ecc4dbcffcf910029df24f103c15d1
+checksum=89e0a83d16993ce50651a7501355453f5250e8729dfc8d4a251a78ea23bb26d7
 
 post_install() {
 	vlicense LICENSE.md
@@ -20,6 +20,7 @@ libcbor-devel_package() {
 	short_desc+=" - development files"
 	pkg_install() {
 		vmove usr/include
+		vmove usr/lib/cmake
 		vmove usr/lib/pkgconfig
 		vmove "usr/lib/*.so"
 	}

@@ -1,6 +1,6 @@
 # Template file for 'mathcomp'
 pkgname=mathcomp
-version=1.15.0
+version=1.19.0
 revision=2
 build_wrksrc="mathcomp"
 build_style=gnu-makefile
@@ -10,8 +10,12 @@ maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="CECILL-B"
 homepage="https://github.com/math-comp/math-comp"
 distfiles="https://github.com/math-comp/math-comp/archive/${pkgname}-${version}.tar.gz"
-checksum=33105615c937ae1661e12e9bc00e0dbad143c317a6ab78b1a15e1d28339d2d95
+checksum=786db902d904347f2108ffceae15ba29037ff8e63a6c58b87928f08671456394
 nocross="ocaml"
+
+post_patch() {
+	vsed -i -e 's/which/command -v/g' Makefile.common
+}
 
 do_install() {
 	make install DESTDIR="${DESTDIR}" 'COQLIB:=$(shell coqtop -where)/'

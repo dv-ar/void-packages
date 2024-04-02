@@ -1,6 +1,6 @@
 # Template file for 'dqlite'
 pkgname=dqlite
-version=1.11.1
+version=1.15.1
 revision=1
 build_style=gnu-configure
 hostmakedepends="pkg-config automake libtool"
@@ -9,8 +9,8 @@ short_desc="Distributed SQLite database using the Raft algorithm"
 maintainer="Cameron Nemo <cam@nohom.org>"
 license="custom:LGPL-3.0-only-linking-exception"
 homepage="https://github.com/canonical/dqlite"
-distfiles="${homepage}/archive/v${version}.tar.gz"
-checksum=f900b81b7ba66ba654c734f7fc9f01caf462408f3751f5357019db0c18d438b5
+distfiles="https://github.com/canonical/dqlite/archive/v${version}.tar.gz"
+checksum=f5bb8bf2de732fe188bfcbb09c3c4fd02707d267734043dbb27d1215da68af4e
 
 pre_configure() {
 	autoreconf -i

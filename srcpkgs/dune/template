@@ -1,6 +1,6 @@
 # Template file for 'dune'
 pkgname=dune
-version=3.5.0
+version=3.14.2
 revision=1
 makedepends="ocaml"
 depends="ocaml"
@@ -8,19 +8,21 @@ short_desc="Composable build system for OCaml"
 maintainer="Leah Neukirchen <leah@vuxu.org>"
 license="MIT"
 homepage="https://dune.build/"
-distfiles="https://github.com/ocaml/dune/archive/refs/tags/${version}.tar.gz"
-checksum=86c6ba465009c7bcf9fc5ac675c788db0ac8d0c72a3566d88c0e1d454968a184
+changelog="https://raw.githubusercontent.com/ocaml/dune/main/CHANGES.md"
+distfiles="https://github.com/ocaml/dune/releases/download/${version}/dune-${version}.tbz"
+checksum=e80867cb362b2749d9d9e0cbab2982f98af1daf4459b81164ca0aac6b4e6ace1
 nocross="ocaml"
 
 _dune_release_pkgs="dune dune-build-info dune-configurator
- dune-glob dune-private-libs dune-site dyn stdune ordering xdg fiber"
+ dune-glob dune-private-libs dune-site dyn stdune ordering xdg
+ chrome-trace ocamlc-loc"
 
 do_configure() {
 	./configure --libdir=/usr/lib/ocaml --mandir=/usr/share/man
 }
 
 do_build() {
-	make dune.exe
+	make release
 	./dune.exe build -p "$(echo $_dune_release_pkgs |tr ' ' ,)" --profile dune-bootstrap
 }
 
