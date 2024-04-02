@@ -5,16 +5,16 @@ maintainer="dv-ar <dvar@tuta.io>"
 pkgname=way-displays
 revision=1
 short_desc="Auto Manage Your Wayland Displays"
-version=1.9.0
+version=1.10.2
 hostmakedepends="pkg-config wayland-devel"
 makedepends="wayland-devel yaml-cpp-devel wlroots-devel eudev-libudev-devel"
 distfiles="https://github.com/alex-courtis/way-displays/archive/refs/tags/${version}.tar.gz"
-checksum=65f6c110a3de8835bec0e71e963f3b9bd3078e18ee3c42167ae33b2005b97675
+checksum=8460c535f5d93f588f25b6e5a34c9b464989315bf779ef535823c0a3c4303c7b
 build_style=gnu-makefile
 make_build_args="PREFIX_ETC=/"
 make_install_args="PREFIX_ETC=/"
 
 post_install() {
 	vlicense LICENSE
-	vman way-displays.1
+	vman doc/way-displays.1
 }
